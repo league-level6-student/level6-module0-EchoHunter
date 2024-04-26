@@ -7,6 +7,8 @@ public class CatFactsRunner {
         catFactsApi.testRequest();
         String catFact = catFactsApi.getCatFact();
         System.out.println(catFact);
+        catFact = catFactsApi.findCatFact();
+        System.out.println(catFact);
     }
 
 }
