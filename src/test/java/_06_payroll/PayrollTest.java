@@ -11,10 +11,13 @@ class PayrollTest {
     @Test
     void itShouldCalculatePaycheck() {
         //given
-
+            double wage = 7.25;
+            int hours = 6;
+            double pay = hours * wage;
         //when
-
+            double should = Payroll.calculatePaycheck(wage,hours);
         //then
+        assertEquals();
     }
 
     @Test
