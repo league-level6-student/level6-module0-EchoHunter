@@ -1,6 +1,7 @@
 package _04_jeopardy_api;
 
 import _04_jeopardy_api.data_transfer_objects.Clue;
+import _04_jeopardy_api.data_transfer_objects.Clue2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -19,7 +20,7 @@ public class JeopardyApi {
 
     private final WebClient webClient;
 
-    private static final String baseUrl = "http://jservice.io/api/clues";
+    private static final String baseUrl = "https://opentdb.com/api.php";
 
     public JeopardyApi() {
         webClient = WebClient
@@ -29,7 +30,7 @@ public class JeopardyApi {
                 .build();
     }
 
-    public Clue getClue(int value) {
+    public Clue2 getClue(int value) {
 
         //1  Use the WebClient code from the previous exercises to make the request:
         //Note:
@@ -38,17 +39,19 @@ public class JeopardyApi {
         //with the specified point value.
         //
         //Make sure to save the response as type Clue[].class in the bodyToMono() method call
-        webClient.get()
+       Mono<Clue2[]> clues = webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                                .queryParam("value", value)
+                                .queryParam("amount", value)
                         .build()
-                ).retrieve();
+                ).retrieve()
+                .bodyToMono(Clue2[].class);
+
+       Clue2[] bigClue = clues.block();
         //2
         //Get a random number less than the size of the Clue array
-
+        int randNum = (int) (Math.random() * bigClue.length);
         //3
         //return the clue at the random index you just created
-
-        return null;
+        return bigClue[randNum];
     }
 }
