@@ -26,7 +26,7 @@ class PayrollTest {
             int travelDist = 10;
             double expected = 5.75;
         //when
-            
+
         //then
     }
 
