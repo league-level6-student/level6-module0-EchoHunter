@@ -15,17 +15,18 @@ class PayrollTest {
             int hours = 6;
             double pay = hours * wage;
         //when
-            double should = Payroll.calculatePaycheck(wage,hours);
+            double should = payroll.calculatePaycheck(wage,hours);
         //then
-        assertEquals();
+        assertEquals(pay, should);
     }
 
     @Test
     void itShouldCalculateMileageReimbursement() {
         //given
-
+            int travelDist = 10;
+            double expected = 5.75;
         //when
-
+            
         //then
     }
 
